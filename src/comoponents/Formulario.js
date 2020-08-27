@@ -1,4 +1,4 @@
-import React,{useState, Fragment} from 'react';
+import React,{useState, Fragment, useEffect} from 'react';
 import Lista from './Lista';
 
 
@@ -9,6 +9,22 @@ const Formulario = () => {
 //aqui creo el state
 const [agregarTareas, setagregarTarea] = useState([]);
 const [tareaUnica, setTareaUnica] = useState("");
+const [inicio, setinicio] = useState(true)
+
+//aqui usamos useEffect para utilizar local storage CICLO DE VIDA DE UN COMPONENTE
+useEffect(()=>{
+    if(inicio){
+        console.log("hola useEffect");
+        let tareasGuardadas = JSON.parse(localStorage.getItem("keylistatareas"));
+        setinicio(false);
+        setagregarTarea(tareasGuardadas);
+    }
+        console.log("componente actualizado");
+        localStorage.setItem("keylistatareas", JSON.stringify(agregarTareas));
+        
+
+},[tareaUnica, agregarTareas])
+
 
 const handleSubmit = (e) => {
     e.preventDefault();
