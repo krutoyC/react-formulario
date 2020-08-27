@@ -20,6 +20,11 @@ const handleSubmit = (e) => {
 
 }
 
+const borrarTareas = (nombreinventadodos) =>{
+    let arregloDeBorrado= agregarTareas.filter((unatareDelArreglodeTarea)=> unatareDelArreglodeTarea!==nombreinventadodos);
+
+    setagregarTarea(arregloDeBorrado);
+}
 
 
     return (
@@ -41,9 +46,9 @@ const handleSubmit = (e) => {
             
         </div>
         </form>
-<section className=" w-70" >
+<section className=" w-70 " >
     
-    <Lista nombreinventado={agregarTareas}>
+    <Lista nombreinventado={agregarTareas} borrarTareas={borrarTareas}>
 
     </Lista>
 
